@@ -1,0 +1,9 @@
+name:           LESS.Curious
+
+baseurl:        /less.curious
+repository_url: https://github.com/seven-phases-max/less.curious
+
+markdown:       redcarpet
+pygments:       false
+
+exclude:        [README.md, .gitignore, preview.cmd, garbage_]
