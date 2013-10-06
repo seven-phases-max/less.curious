@@ -1,6 +1,7 @@
 ---
-layout: default
-title:  "Arrays in [LESS](http://lesscss.org)"
+layout:   default
+title:    Arrays in LESS
+title_md: Arrays in [LESS](http://lesscss.org)
 ---
 
 The first digital computers used machine-language programming to set up and access array structures for data tables, vector and matrix computations, and for many other purposes. Von Neumann wrote the first array-sorting program (merge sort) in 1945, during the building of the first stored-program computer.[6]p. 159 Array indexing was originally done by self-modifying code, and later using index registers and indirect addressing. Some mainframes designed in the 1960s, such as the Burroughs B5000 and its successors, had special instructions for array indexing that included index-bounds checking.[citation needed].
