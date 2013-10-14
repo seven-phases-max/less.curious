@@ -5,7 +5,7 @@ LESS: Generic For
 LESS code:
 	
     #basic-usage {
-        .for(1, 6); .-(@i) {
+        .for(1, 6); .-for(@i) {
             i: @i;
         }
     }
@@ -24,7 +24,7 @@ CSS output:
 ###  Implementation
     
     .for(@n)     {.for(1, @n)}
-    .for(@i, @n) {.-(@i)}
+    .for(@i, @n) {.-for(@i)}
     .for(@i, @n) when not (@i = @n) {
         .for((@i + (@n - @i) / abs(@n - @i)), @n);
     }
@@ -35,7 +35,7 @@ LESS code:
     @grid-columns: 5;
     
     .column {
-        .for(@grid-columns); .-(@i) {
+        .for(@grid-columns); .-for(@i) {
             &-@{i} {width: (@i / @grid-columns * 100%)}
         }
     }
@@ -78,7 +78,7 @@ CSS output:
 @grid-columns: 5;
 
 .column {
-    .for(@grid-columns); .-(@i) {
+    .for(@grid-columns); .-for(@i) {
         &-@{i} {width: (@i / @grid-columns * 100%)}
     }
 }
@@ -91,8 +91,8 @@ More curious examples
 ### Nested loops:
 	
     #nested-loops {
-        .for(3, 1); .-(@i) {
-            .for(0, 2); .-(@j) {
+        .for(3, 1); .-for(@i) {
+            .for(0, 2); .-for(@j) {
                 x: (10 * @i + @j);
             }
         }
@@ -115,8 +115,8 @@ output:
 ### Multiple loops in a rule:
 
     #multiple-loops {
-        & {.for(1, 3); .-(@i) {x: @i}}
-        & {.for(4, 6); .-(@i) {y: @i}}
+        & {.for(1, 3); .-for(@i) {x: @i}}
+        & {.for(4, 6); .-for(@i) {y: @i}}
     }
     
 output:
@@ -137,14 +137,14 @@ output:
     happy debugging {
         .foe.and-friend-scope();
         and & to me {
-            .foe(0, 9); .-(@i) {a: @i}
+            .foe(0, 9); .-for(@i) {a: @i}
         }
     }
     
     .foe(...) {
         .for(0, 2);
         .and-friend-scope() {
-            .-(@i) {b: @i} to you {
+            .-for(@i) {b: @i} to you {
                 .for(9, 7);
                 .for(5, 3);
             }

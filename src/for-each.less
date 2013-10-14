@@ -1,0 +1,11 @@
+
+// ............................................................................
+// .for-each
+//
+// see github.com/seven-phases-max/less.curious/blob/master/articles/for-each.md
+
+.for-each(@array) {
+    .-(length(@array));
+    .-(@i) when (@i > 1) {.-((@i - 1))}
+    .-(@i) {.-for-each(extract(@array, @i))}
+}
