@@ -1,4 +1,4 @@
-[for-each.less](github.com/seven-phases-max/less.curious/blob/master/src/for-each.less)
+[for-each.less](//github.com/seven-phases-max/less.curious/blob/master/src/for-each.less)
 ===============
 
 Usage:
