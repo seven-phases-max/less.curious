@@ -9,3 +9,10 @@
     .-(@i) when (@i > 1) {.-((@i - 1))}
     .-(@i) {.-for-each(extract(@array, @i))}
 }
+
+// ............................................................................
+// LESS version guard:
+
+.version-guard__(@n: length(-)) when not(@n = 1) {
+    -:@@-;@-:': requires LESS versions 1.5.0 or higher';
+} .version-guard__();
