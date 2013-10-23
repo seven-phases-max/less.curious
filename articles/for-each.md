@@ -26,6 +26,7 @@ CSS output:
 ```
 
 ###Practical Example
+LESS code:
 <pre lang="less"><code>@import <a href="../src/for-each.less">"for-each"</a>;
 
 .transition(@properties, @value...) {
