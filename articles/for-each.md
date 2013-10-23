@@ -3,17 +3,16 @@
 
 ###Basic Usage
 LESS code:
-```less
-@import "for-each";
+<pre lang="less"><code>@import <a href="../src/for-each.less">"for-each"</a>;
 
 @list: banana, apple, pear, potato, carrot, peach;
 
-#basic-usage {
+basic-usage {
     .for-each(@list); .-for-each(@value) {
         value: @value;
     }
 }
-```	
+</code></pre>
 CSS output:
 ```css
 #basic-usage {
@@ -24,12 +23,10 @@ CSS output:
   value: carrot;
   value: peach;
 }
-```  
+```
 
 ###Practical Example
-LESS code:
-```less
-@import "for-each";
+<pre lang="less"><code>@import <a href="../src/for-each.less">"for-each"</a>;
 
 .transition(@properties, @value...) {
     .for-each(@properties); .-for-each(@property) {
@@ -55,9 +52,9 @@ div {
 .another {
     .transition(all, 4s);
 }
-```	
+</code></pre>
 CSS output:
-```css	
+```css
 div {
   transition: color 2s ease-out, background-color 2s ease-out, border-color 2s ease-out;
 }
@@ -70,4 +67,4 @@ div {
 .another {
   transition: all 4s;
 }
-``` 
+```
