@@ -1,5 +1,4 @@
-[for-each.less](//github.com/seven-phases-max/less.curious/blob/master/src/for-each.less)
-===============
+#Generic [for-each](../src/for-each.less) Structure in [LESS](http://lesscss.org/) Using Mixins
 
 ###Basic Usage
 LESS code:
@@ -15,7 +14,7 @@ basic-usage {
 </code></pre>
 CSS output:
 ```css
-#basic-usage {
+basic-usage {
   value: banana;
   value: apple;
   value: pear;
