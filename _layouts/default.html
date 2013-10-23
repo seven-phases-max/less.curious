@@ -1,11 +1,9 @@
 {% include header.html %}
 
-<!-- MAIN CONTENT -->
-<div id="main_content_wrap" class="outer">
-<section id="main_content" class="inner">
+<!-- CONTENT -->
+<div class="container">
     <h1>{% if page.title_md %}{{page.title_md | markdownify}}{% else %}{{page.title}}{% endif %}</h1>
     {{content}}
-</section>
 </div>
 
 {% include footer.html %}
