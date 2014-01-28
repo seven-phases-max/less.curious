@@ -1,17 +1,18 @@
-LESS: Generic For
-=================
+##Generic for Structure in [LESS](http://lesscss.org/) Using Mixins
 
-###  Basic example
+### Basic usage
 LESS code:
-	
+
+    @import "for";
+
     #basic-usage {
-        .for(1, 6); .-for(@i) {
+        .for(6); .-each(@i) {
             i: @i;
         }
     }
-	
+
 CSS output:
-	
+
     basic-usage {
       i: 1;
       i: 2;
@@ -20,28 +21,20 @@ CSS output:
       i: 5;
       i: 6;
     }
-    
-###  Implementation
-    
-    .for(@n)     {.for(1, @n)}
-    .for(@i, @n) {.-for(@i)}
-    .for(@i, @n) when not (@i = @n) {
-        .for((@i + (@n - @i) / abs(@n - @i)), @n);
-    }
 
-###  More real-world example
+### More real-world example
 LESS code:
-	
+
     @grid-columns: 5;
-    
+
     .column {
-        .for(@grid-columns); .-for(@i) {
+        .for(@grid-columns); .-each(@i) {
             &-@{i} {width: (@i / @grid-columns * 100%)}
         }
     }
-	
+
 CSS output:
-	
+
     .column-1 {
       width: 20%;
     }
@@ -57,39 +50,12 @@ CSS output:
     .column-5 {
       width: 100%;
     }
-    
-### .For vs. handwritten Loop
 
-<table><tr>
-<td><pre>
-// hand-written loop 
-
-@grid-columns: 5;
-
-.column(1);
-.column(@i) when (@i =&lsaquo; @grid-columns) {                
-    .&-@{i} {width: (@i / @grid-columns * 100%)}
-    .column((@i + 1));
-}
-</pre></td>
-<td><pre>
-// using .for
-
-@grid-columns: 5;
-
-.column {
-    .for(@grid-columns); .-for(@i) {
-        &-@{i} {width: (@i / @grid-columns * 100%)}
-    }
-}
-</pre></td>
-</tr></table>
-    
-More curious examples
+More examples
 ---------------------
 
 ### Nested loops:
-	
+
     #nested-loops {
         .for(3, 1); .-for(@i) {
             .for(0, 2); .-for(@j) {
@@ -97,9 +63,9 @@ More curious examples
             }
         }
     }
-        
+
 output:
-	
+
     #nested-loops {
       x: 30;
       x: 31;
@@ -111,14 +77,14 @@ output:
       x: 11;
       x: 12;
     }
-    
+
 ### Multiple loops in a rule:
 
     #multiple-loops {
         & {.for(1, 3); .-for(@i) {x: @i}}
         & {.for(4, 6); .-for(@i) {y: @i}}
     }
-    
+
 output:
 
     #multiple-loops {
@@ -132,37 +98,22 @@ output:
       y: 6;
     }
 
-### Learn the LESS scope:
+### Multiple loops in a rule (Alt.):
 
-    happy debugging {
-        .foe.and-friend-scope();
-        and & to me {
-            .foe(0, 9); .-for(@i) {a: @i}
-        }
+    #multiple-loops-alt {
+        .-() {.for(1, 3); .-each(@i) {x: @i}}
+        .-() {.for(4, 6); .-each(@i) {y: @i}}
+        .-();
     }
-    
-    .foe(...) {
-        .for(0, 2);
-        .and-friend-scope() {
-            .-for(@i) {b: @i} to you {
-                .for(9, 7);
-                .for(5, 3);
-            }
-        }
-    }
-    
+
 output:
 
-    happy debugging to you {
-      b: 9;
-      b: 8;
-      b: 7;
-      b: 5;
-      b: 4;
-      b: 3;
+    #multiple-loops-alt {
+      x: 1;
+      x: 2;
+      x: 3;
+      y: 4;
+      y: 5;
+      y: 6;
     }
-    and happy debugging to me {
-      a: 0;
-      a: 1;
-      a: 2;
-    }
+

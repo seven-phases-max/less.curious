@@ -1,17 +1,18 @@
-##Generic [for-each](../src/for-each.less) Structure in [LESS](http://lesscss.org/) Using Mixins
+##Generic for-each Structure in [LESS](http://lesscss.org/) Using Mixins
 
 ###Basic Usage
 LESS code:
-<pre lang="less"><code>@import <a href="../src/for-each.less">"for-each"</a>;
+```less
+@import "for";
 
 @list: banana, apple, pear, potato, carrot, peach;
 
-basic-usage {
-    .for-each(@list); .-for-each(@value) {
+#basic-usage {
+    .for(@list); .-each(@value) {
         value: @value;
     }
 }
-</code></pre>
+```
 CSS output:
 ```css
 basic-usage {
@@ -24,17 +25,16 @@ basic-usage {
 }
 ```
 
-###Practical Example
+###Practical Examples
 LESS code:
-<pre lang="less"><code>@import <a href="../src/for-each.less">"for-each"</a>;
+```less
+@import "for";
 
 .transition(@properties, @value...) {
-    .for-each(@properties); .-for-each(@property) {
+    .for(@properties); .-each(@property) {
         transition+: @property @value;
     }
 }
-
-// ............................................................................
 
 div {
     @properties: color, background-color, border-color;
@@ -45,14 +45,10 @@ div {
     .transition(background-color border-color, 1s ease-in);
 }
 
-.other {
-    .transition(width, height; 3s, linear 1s);
-}
-
 .another {
     .transition(all, 4s);
 }
-</code></pre>
+```
 CSS output:
 ```css
 div {
@@ -61,10 +57,37 @@ div {
 .button {
   transition: background-color 1s ease-in, border-color 1s ease-in;
 }
-.other {
-  transition: width 3s, linear 1s, height 3s, linear 1s;
-}
 .another {
   transition: all 4s;
+}
+```
+LESS code:
+```less
+@import "for";
+
+#icon {
+    .for(home ok cancel error book); .-each(@name) {
+        &-@{name} {
+            background-image: url("../images/@{name}.png");
+        }
+    }
+}
+```
+CSS output:
+```css
+#icon-home {
+  background-image: url("../images/home.png");
+}
+#icon-ok {
+  background-image: url("../images/ok.png");
+}
+#icon-cancel {
+  background-image: url("../images/cancel.png");
+}
+#icon-error {
+  background-image: url("../images/error.png");
+}
+#icon-book {
+  background-image: url("../images/book.png");
 }
 ```

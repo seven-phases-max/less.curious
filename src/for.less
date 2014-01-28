@@ -1,11 +1,19 @@
 
-// ............................................................................
+// ............................................................
 // .for
-//
-// see github.com/seven-phases-max/less.curious/blob/master/articles/generic-for.md
 
-.for(@n)     {.for(1, @n)}
-.for(@i, @n) {.-for(@i)}
+.for(@i, @n) {.-each(@i)}
+.for(@n)     when (isnumber(@n)) {.for(1, @n)}
 .for(@i, @n) when not (@i = @n) {
     .for((@i + ((@n - @i) / abs(@n - @i))), @n);
+}
+
+// ............................................................
+// .for-each
+
+.for(@array) when not(isnumber(@array)) {
+    .-(@i: length(@array)) when (@i > 0) {
+        .-((@i - 1));
+        .-each(extract(@array, @i));
+    } .-();
 }
