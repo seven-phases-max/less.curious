@@ -11,7 +11,7 @@
 // ............................................................
 // .for-each
 
-.for(@array) when not(isnumber(@array)) {
+.for(@array) when (default()) {
     .-(@i: length(@array)) when (@i > 0) {
         .-((@i - 1));
         .-each(extract(@array, @i));
