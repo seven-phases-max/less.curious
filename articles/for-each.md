@@ -1,9 +1,8 @@
-##Generic for-each Structure in [LESS](http://lesscss.org/) Using Mixins
+##Generic `for-each` Structure in [LESS](http://lesscss.org/) Using Mixins
 
 ###Basic Usage
 LESS code:
-```less
-@import "for";
+<pre lang="less"><code>@import <a href="../src/for.less">"for"</a>;
 
 @list: banana, apple, pear, potato, carrot, peach;
 
@@ -12,7 +11,8 @@ LESS code:
         value: @value;
     }
 }
-```
+</code></pre>
+
 CSS output:
 ```css
 basic-usage {
@@ -28,7 +28,6 @@ basic-usage {
 ###Practical Examples
 LESS code:
 ```less
-@import "for";
 
 .transition(@properties, @value...) {
     .for(@properties); .-each(@property) {
@@ -63,7 +62,6 @@ div {
 ```
 LESS code:
 ```less
-@import "for";
 
 #icon {
     .for(home ok cancel error book); .-each(@name) {
@@ -91,3 +89,29 @@ CSS output:
   background-image: url("../images/book.png");
 }
 ```
+
+More examples
+---------------------
+### Nested loops:
+
+    #nested-loops {
+        .for(a b c); .-each(@a) {
+            .for(1 2 3); .-each(@b) {
+                x: @a @b;
+            }
+        }
+    }
+
+output:
+
+    #nested-loops {
+      x: a 1;
+      x: a 2;
+      x: a 3;
+      x: b 1;
+      x: b 2;
+      x: b 3;
+      x: c 1;
+      x: c 2;
+      x: c 3;
+    }

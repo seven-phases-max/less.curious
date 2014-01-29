@@ -1,15 +1,15 @@
-##Generic for Structure in [LESS](http://lesscss.org/) Using Mixins
+##Generic `for` Structure in [LESS](http://lesscss.org/) Using Mixins
 
 ### Basic usage
 LESS code:
+<pre lang="less"><code>@import <a href="../src/for.less">"for"</a>;
 
-    @import "for";
-
-    #basic-usage {
-        .for(6); .-each(@i) {
-            i: @i;
-        }
+#basic-usage {
+    .for(6); .-each(@i) {
+        i: @i;
     }
+}
+</code></pre>
 
 CSS output:
 

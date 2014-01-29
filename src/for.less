@@ -4,16 +4,13 @@
 
 .for(@i, @n) {.-each(@i)}
 .for(@n)     when (isnumber(@n)) {.for(1, @n)}
-.for(@i, @n) when not (@i = @n) {
+.for(@i, @n) when not (@i = @n)  {
     .for((@i + ((@n - @i) / abs(@n - @i))), @n);
 }
 
 // ............................................................
 // .for-each
 
-.for(@array) when (default()) {
-    .-(@i: length(@array)) when (@i > 0) {
-        .-((@i - 1));
-        .-each(extract(@array, @i));
-    } .-();
-}
+.for(@array)   when (default()) {.for-impl_(length(@array))}
+.for-impl_(@i) when (@i > 1)    {.for-impl_((@i - 1))}
+.for-impl_(@i)                  {.-each(extract(@array, @i))}
