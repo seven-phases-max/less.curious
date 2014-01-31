@@ -57,8 +57,8 @@ More examples
 ### Nested loops:
 
     #nested-loops {
-        .for(3, 1); .-for(@i) {
-            .for(0, 2); .-for(@j) {
+        .for(3, 1); .-each(@i) {
+            .for(0, 2); .-each(@j) {
                 x: (10 * @i + @j);
             }
         }
@@ -81,8 +81,8 @@ output:
 ### Multiple loops in a rule:
 
     #multiple-loops {
-        & {.for(1, 3); .-for(@i) {x: @i}}
-        & {.for(4, 6); .-for(@i) {y: @i}}
+        & {.for(1, 3); .-each(@i) {x: @i}}
+        & {.for(4, 6); .-each(@i) {y: @i}}
     }
 
 output:
