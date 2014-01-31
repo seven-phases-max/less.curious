@@ -80,7 +80,7 @@ output:
 
 ### Multiple loops in a rule:
 
-    #multiple-loops-alt {
+    #multiple-loops {
         .-() {.for(1, 3); .-each(@i) {x: @i}}
         .-() {.for(4, 6); .-each(@i) {y: @i}}
         .-();
@@ -88,7 +88,7 @@ output:
 
 output:
 
-    #multiple-loops-alt {
+    #multiple-loops {
       x: 1;
       x: 2;
       x: 3;
