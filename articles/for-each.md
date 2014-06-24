@@ -1,7 +1,7 @@
-##Generic `for-each` Structure in [LESS](http://lesscss.org/) Using Mixins
+##Generic `for-each` Structure in [Less](http://lesscss.org/) Using Mixins
 
 ###Basic Usage
-LESS code:
+Less code:
 <pre lang="less"><code>@import <a href="../src/for.less">"for"</a>;
 
 @list: banana, apple, pear, potato, carrot, peach;
@@ -26,7 +26,7 @@ basic-usage {
 ```
 
 ###Practical Examples
-LESS code:
+Less code:
 ```less
 
 .transition(@properties, @value...) {
@@ -60,7 +60,7 @@ div {
   transition: all 4s;
 }
 ```
-LESS code:
+Less code:
 ```less
 
 #icon {

@@ -1,7 +1,7 @@
-##Generic `for` Structure in [LESS](http://lesscss.org/) Using Mixins
+##Generic `for` Structure in [Less](http://lesscss.org/) Using Mixins
 
 ### Basic usage
-LESS code:
+Less code:
 <pre lang="less"><code>@import <a href="../src/for.less">"for"</a>;
 
 #basic-usage {
@@ -23,7 +23,7 @@ CSS output:
     }
 
 ### More real-world example
-LESS code:
+Less code:
 
     @grid-columns: 5;
 
