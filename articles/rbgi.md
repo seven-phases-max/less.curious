@@ -30,7 +30,7 @@ Here's that "horrible" [`.make-grid-columns`](https://github.com/twbs/bootstrap/
   .col(1); // kickstart it
 }
 ```
-Doh! No, actually, strictly speaking, there's nothing wrong with this code. It's valid Less, it does what it is supposed to do and works like a charm after all. It's just "not elegant". And this "not elegant" is actually enough reason for me (who spent a lot of time and efforts on advertising and pushing "a modern and proper methods of working with Less lists/array/loops and related stuff") to try to find a better way to generate an equal CSS.
+Doh! No, actually, strictly speaking, there's nothing wrong with this code. It's valid Less, it does what it is supposed to do and works like a charm after all. It's just "not elegant". And this "not elegant" is actually enough reason for me (who spent a lot of time and efforts on advertising and pushing "a modern and proper methods of working with Less lists/arrays/loops and related stuff") to try to find a better way to generate equal CSS.
 
 (Well, even more strictly speaking, there *are* other more rational reasons for such "string-based selector manipulation" to be avoided whenever possible, but that's another big story so here I'll stop at just "not elegant").
 
@@ -68,13 +68,13 @@ Currently, the only "Less-native"/"non-hackish" way to generate a ruleset with a
     .col(@grid-columns);
 }
 ```
-That's it (Actual code for complete `grid-framework.less` will be a bit different to accommodate various scoping and `@media` stuff but the principle remains the same). The only problem of this approach is that the compiled CSS now has that "unused" "private" `.grid-column-any` selector and complete `grid-framework.less` would need 4 or 5 of those (Below I will refer to such selectors as just "dummy" classes/selectors/templates).
+That's it (actual code for complete `grid-framework.less` will be a bit different to accommodate various scoping and `@media` stuff but the principle remains the same). The only problem of this approach is that the compiled CSS now contains that "unused" "private" `.grid-column-any` selector and complete `grid-framework.less` would need 4 or 5 of those (Below I will refer to such selectors as just "dummy" classes/selectors/templates).
 
 -
 > Getting rid of the dummy selectors...
 
-If Less has the [":extend mixins" feature](https://github.com/less/less.js/issues/1177) we could simply turn the template into a mixin and it won't appear in the CSS, but Less has not so ... it's time for some trick.
-### Method #2 ("Extending `.col-*-1` classes"):
+If Less has the [":extend mixins" feature](https://github.com/less/less.js/issues/1177) we could simply turn the template into a mixin and it won't appear in the CSS, but Less has not... so it's time for some trick.
+### Method #2 ("Extending `.col-*-1` classes").
 And here we are, set the template styles in the first column classes and than `extend` this first column(s) by subsequent column classes:
 ```
 .col-xs-1,
@@ -103,20 +103,20 @@ And here we are, set the template styles in the first column classes and than `e
 ```
 (Yet again the actual code of `grid-framework.less` would be slightly different: see [the branch](https://github.com/seven-phases-max/bootstrap/blob/refactoring-grid-framework/less/mixins/grid-framework.less).)
 
-Unfortunately this approach has one quite critical problem, while such mixin works like a charm on its own, it may interfere with and be broken by another grid related code. Basically if you add another `.col-xs-1` definition/styles anywhere at the global scope of your Less code, e.g.:
+Unfortunately this approach has one quite critical problem, while such mixin works just fine on its own, in the framework it may interfere with and be broken by another grid related code. Basically if you for example add another `.col-xs-1` definition/styles anywhere at the global scope of your Less code, e.g.:
 ```
 .col-xs-1 {
     color: red;
 }
 ```
-the styles of this new definition will automatically propagate to *every other* grid column. Fortunately, currently, even if other Bootstrap grid mixins *do* generate other first column styles these other styles *do not* break anything simply because their selectors are generated via selector interpolation and `extend` does not work with dinamically generated selectors. 
+the styles of this new definition will automatically propagate to *every other* grid column. Fortunately, currently even if other Bootstrap grid mixins *do* generate other first column styles these other styles *do not* break anything simply because their selectors are generated via selector interpolation and `extend` does not work with such dinamically generated selectors. 
 
-So this method may still be considered as a working, temporary solution, but only if we don't want the Method #1 with it's dummy classes really badly deadly. After all this "extending first column" method will be irrecoverably broken as soon as Less brings "extending dinamicaly generated selectors" feature. And before that it will keep sitting there with its potential `.col-xs-1 {color: red}` grenade ready.
+So this method may still be considered as a working temporary solution, but only if we don't want the Method #1 with its dummy classes really badly deadly. After all this "extending first column" method will be irrecoverably broken as soon as Less brings "extending dinamicaly generated selectors" feature. And before that it will keep sitting there with its potential `.col-xs-1 {color: red}` grenade ready.
 
 -
 > Getting rid of the dummy selectors, the other way around...
 
-### Method #3 ("Emulating #1177"):
+### Method #3 ("Emulating #1177").
 It is possible to emulate the [":extend mixins" feature](https://github.com/less/less.js/issues/1177) by `extend`ing a ruleset defined in a file imported with [`reference`](http://lesscss.org/features/#import-options-reference) option. I.e. we can move our dummy templates into a separate file, `@import (reference) "it";` and voilà, no dummy selectors in the generated CSS:
 
 ```
@@ -151,7 +151,7 @@ It is possible to emulate the [":extend mixins" feature](https://github.com/less
 ```
 Clean and relatively simple (not counting it brings additional file(s) and requires use of `reference` never used in Bootstrap code before). 
 
-Unfortunately the things become not so simple (and even less clean) if we try to apply this approach to other `grid-framework` mixins (the one that generates media depended column rulesets in particular). To be able to `extend` a template rulesets within `@media` block we need such ruleset to be defined *in* this `@media` block (see ["Scoping / Extend Inside @media"](http://lesscss.org/features/#extend-feature-scoping-extend-inside-media)). It's definitely possible (for example we can import our auxiliary file right within a mixin so it "automatically" brings the necessary templates into corresponding `@media` [blocks](https://github.com/twbs/bootstrap/blob/v3.2.0/less/grid.less#L56) (I actually have a working concept somewhere among my local branches), but the complete `grid-framework` implementation using this approach becomes so tricky, cryptic and unreadable so it actually spoils the very idea of the refactoring (i.e. we'll just replace one "non-elegant and hackish" implementation with another "maybe a bit more elegant but even yet more hackish" one). 
+Unfortunately the things become not so simple (and even less clean) if we try to apply this approach to other `grid-framework` mixins (the one that generates media depended column rulesets in particular). To be able to `extend` a template ruleset within a `@media` block we need such ruleset to be defined *in* this `@media` block (see ["Scoping / Extend Inside @media"](http://lesscss.org/features/#extend-feature-scoping-extend-inside-media)). It's definitely possible (for example we can import our auxiliary file right within a column generating mixin so it "automatically" brings the necessary templates into corresponding `@media` [blocks](https://github.com/twbs/bootstrap/blob/v3.2.0/less/grid.less#L56) (I actually have a working concept somewhere among my local branches), but the complete `grid-framework` implementation using this approach becomes so tricky, cryptic and unreadable so it actually spoils the very idea of the refactoring (i.e. we'll just replace one "non-elegant and hackish" implementation with another "maybe a bit more elegant but even yet more hackish" one). 
 
 So I would not consider going this "reference" route seriously (for the Bootstrap code-base at least).
 
