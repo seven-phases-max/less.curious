@@ -41,9 +41,9 @@ Doh! No, actually, strictly speaking, there's nothing wrong with this code. It's
 There are some feature requests/ideas that will improve the situation eventually (see [#1421](https://github.com/less/less.js/issues/1421), [#1177](https://github.com/less/less.js/issues/1177) etc.), but they at best are in their early planning stage so it's hard to say when we'll finally be able to rewrite this code "the right way".
 
 ### So the task:
-> Can we rewrite Bootstrap grid generation code in not so hackish way **right now**?
+> Can we rewrite Bootstrap grid generation code in not so hackish way *right now*?
 
-Currently, the only "Less-native"/"non-hackish" way to generate a ruleset with a list of arbitrary selectors is the [`extend`](http://lesscss.org/features/#extend-feature) feature. So the first (and the most simple) solution is to move those "common styles" into a ruleset with some predefined name and then just `extend` it by generated column classes:
+Currently, the only "Less-native"/"non-hackish" way to generate a ruleset with a list of arbitrary selectors is the [`extend`](http://lesscss.org/features/#extend-feature) feature. So the first (and the simplest) solution is to move those "common styles" into a ruleset with some predefined name and then just `extend` it by generated column classes:
 
 ### Method #1 ("Dummy Classes").
 ```
