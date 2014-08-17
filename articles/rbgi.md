@@ -103,7 +103,7 @@ And here we are, set the template styles in the first column classes and than `e
 ```
 (Yet again the actual code of `grid-framework.less` would be slightly different: see [the branch](https://github.com/seven-phases-max/bootstrap/blob/refactoring-grid-framework/less/mixins/grid-framework.less).)
 
-Unfortunately this approach has one quite critical problem, while such mixin works just fine on its own, in the framework it may interfere with and be broken by another grid related code. Basically if you for example add another `.col-xs-1` definition/styles anywhere at the global scope of your Less code, e.g.:
+Unfortunately this approach has one quite critical problem. While such mixin works just fine on its own, in the framework it may interfere with and be broken by another grid related code. Basically if you for example add another `.col-xs-1` definition/styles anywhere at the global scope of your Less code, e.g.:
 ```
 .col-xs-1 {
     color: red;
@@ -151,7 +151,7 @@ It is possible to emulate the [":extend mixins" feature](https://github.com/less
 ```
 Clean and relatively simple (not counting it brings additional file(s) and requires use of `reference` never used in Bootstrap code before). 
 
-Unfortunately the things become not so simple (and even less clean) if we try to apply this approach to other `grid-framework` mixins (the one that generates media depended column rulesets in particular). To be able to `extend` a template ruleset within a `@media` block we need such ruleset to be defined *in* this `@media` block (see ["Scoping / Extend Inside @media"](http://lesscss.org/features/#extend-feature-scoping-extend-inside-media)). It's definitely possible (for example we can import our auxiliary file right within a column generating mixin so it "automatically" brings the necessary templates into corresponding `@media` [blocks](https://github.com/twbs/bootstrap/blob/v3.2.0/less/grid.less#L56) (I actually have a working concept somewhere among my local branches), but the complete `grid-framework` implementation using this approach becomes so tricky, cryptic and unreadable so it actually spoils the very idea of the refactoring (i.e. we'll just replace one "non-elegant and hackish" implementation with another "maybe a bit more elegant but even yet more hackish" one). 
+Unfortunately the things become not so simple (and even less clean) if we try to apply this approach to other `grid-framework` mixins (the one that generates media depended column rulesets in particular). To be able to `extend` a template ruleset within a `@media` block we need such ruleset to be defined *in* this `@media` block (see ["Scoping / Extend Inside @media"](http://lesscss.org/features/#extend-feature-scoping-extend-inside-media)). It's definitely possible (for example we can import our auxiliary file right within a column generating mixin so it "automatically" brings the necessary templates into corresponding `@media` [blocks](https://github.com/twbs/bootstrap/blob/v3.2.0/less/grid.less#L56) (I actually have a working concept somewhere among my local branches)), but the complete `grid-framework` implementation using this approach becomes so tricky, cryptic and unreadable so it actually spoils the very idea of the refactoring (i.e. we'll just replace one "non-elegant and hackish" implementation with another "maybe a bit more elegant but even yet more hackish" one). 
 
 So I would not consider going this "reference" route seriously (for the Bootstrap code-base at least).
 
