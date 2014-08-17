@@ -111,7 +111,7 @@ Unfortunately this approach has one quite critical problem. While such mixin wor
 ```
 the styles of this new definition will automatically propagate to *every other* grid column. Fortunately, currently even if other Bootstrap grid mixins *do* generate other first column styles these other styles *do not* break anything simply because their selectors are generated via selector interpolation and `extend` does not work with such dinamically generated selectors. 
 
-So this method may still be considered as a working temporary solution, but only if we don't want the Method #1 with its dummy classes really badly deadly. After all this "extending first column" method will be irrecoverably broken as soon as Less brings "extending dinamicaly generated selectors" feature. And before that it will keep sitting there with its potential `.col-xs-1 {color: red}` grenade ready.
+So this method may still be considered as a working temporary solution, but only if we don't want the Method #1 with its dummy classes really badly deadly. After all this "extending first column" method will be irrecoverably broken as soon as Less brings "extending dinamicaly generated selectors" feature. And before that happens the mentioned potential issues will keep hiding there with its `.col-xs-1 {color: red}` grenade ready.
 
 -
 > Getting rid of the dummy selectors, the other way around...
