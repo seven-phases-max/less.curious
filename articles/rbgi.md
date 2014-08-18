@@ -45,7 +45,7 @@ There are some feature requests/ideas that will improve the situation eventually
 ### So the task:
 > Can we rewrite Bootstrap grid generation code in not so hackish way *right now*?
 
-Currently, the only "Less-native"/"non-hackish" way to generate a ruleset with a list of arbitrary selectors is the [`extend`](http://lesscss.org/features/#extend-feature) feature. So the first (and the simplest) solution is to move those "common styles" into a ruleset with some predefined name and then just `extend` it by generated column classes:
+Currently, the only "Less-native"/"non-hackish" way to generate a ruleset with a list of arbitrary selectors is the [`extend`](http://lesscss.org/features/#extend-feature) feature. So the first (and the simplest) solution is to move the styles of the generated selector list into a ruleset with some predefined name and then just `extend` it by generated classes:
 
 ### Method #1 ("Dummy Classes").
 ```
