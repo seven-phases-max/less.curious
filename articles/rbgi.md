@@ -30,7 +30,9 @@ Here's that "horrible" [`.make-grid-columns`](https://github.com/twbs/bootstrap/
   .col(1); // kickstart it
 }
 ```
-Doh! No, actually, strictly speaking, there's nothing wrong with this code. It's valid Less, it does what it is supposed to do and works like a charm after all. It's just "not elegant". And this "not elegant" is actually enough reason for me (who spent a lot of time and efforts on advertising and pushing "a modern and proper methods of working with Less lists/arrays/loops and related stuff") to try to find a better way to generate equal CSS.
+Doh!
+
+No, actually, strictly speaking, there's nothing wrong with this code. It's valid Less, it does what it is supposed to do and works like a charm after all. It's just "not elegant". And this "not elegant" is actually enough reason for me (who spent a lot of time and efforts on advertising and pushing "a modern and proper methods of working with Less lists/arrays/loops and related stuff") to try to find a better way to generate equal CSS.
 
 (Well, even more strictly speaking, there *are* other more rational reasons for such "string-based selector manipulation" to be avoided whenever possible, but that's another big story so here I'll stop at just "not elegant").
 
