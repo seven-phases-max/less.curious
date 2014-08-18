@@ -119,7 +119,7 @@ So this method may still be considered as a working temporary solution, but only
 > Getting rid of the dummy selectors, the other way around...
 
 ### Method #3 ("Emulating #1177").
-It is possible to emulate the [":extend mixins" feature](https://github.com/less/less.js/issues/1177) by `extend`ing a ruleset defined in a file imported with [`reference`](http://lesscss.org/features/#import-options-reference) option. I.e. we can move our dummy templates into a separate file, `@import (reference) "it";` and voilà, no dummy selectors in the generated CSS:
+It is possible to emulate the [":extend mixins" feature](https://github.com/less/less.js/issues/1177) by `extend`ing a ruleset defined in a file imported with [`reference`](http://lesscss.org/features/#import-options-reference) option. I.e. we can move our dummy templates to a separate file, `@import (reference) "it";` and voilà, no dummy selectors in the generated CSS:
 
 ```
 // ............................................................
