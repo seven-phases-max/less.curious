@@ -70,7 +70,7 @@ Currently, the only "Less-native"/"non-hackish" way to generate a ruleset with a
     .col(@grid-columns);
 }
 ```
-That's it (actual code for complete `grid-framework.less` will be a bit different to accommodate various scoping and `@media` stuff but the principle remains the same). The only problem of this approach is that the compiled CSS now contains that "unused" "private" `.grid-column-any` selector and complete `grid-framework.less` would need 4 or 5 of those (Below I will refer to such selectors as just "dummy" classes/selectors/templates).
+That's it (actual code for complete `grid-framework.less` will be a bit different to accommodate various scoping and `@media` stuff but the principle remains the same: see [the branch](https://github.com/seven-phases-max/bootstrap/blob/refactoring-grid-framework-m1/less/mixins/grid-framework.less)). The only problem of this approach is that the compiled CSS now contains that "unused" "private" `.grid-column-any` selector and complete `grid-framework.less` would need 4 or 5 of those (Below I will refer to such selectors as just "dummy" classes/selectors/templates).
 
 -
 > Getting rid of the dummy selectors...
@@ -103,7 +103,7 @@ And here we are, set the template styles in the first column classes and than `e
     .col(@grid-columns);
 }
 ```
-(Yet again the actual code of `grid-framework.less` would be slightly different: see [the branch](https://github.com/seven-phases-max/bootstrap/blob/refactoring-grid-framework/less/mixins/grid-framework.less).)
+(Yet again the actual code of `grid-framework.less` would be slightly different: see [the branch](https://github.com/seven-phases-max/bootstrap/blob/refactoring-grid-framework-m2/less/mixins/grid-framework.less).)
 
 Unfortunately this approach has one quite critical problem. While such mixin works just fine on its own, in the framework it may interfere with and be broken by another grid related code. Basically if you for example add another `.col-xs-1` definition/styles anywhere at the global scope of your Less code, e.g.:
 ```
