@@ -115,3 +115,28 @@ output:
       x: c 2;
       x: c 3;
     }
+
+Prevent bug
+-----------
+
+Never use bare `.for`. use `&{}` when no wraper exists.
+    
+    @import "for";
+    @list-y: 'I', 'You', 'others';
+    
+    &{
+      .for(@list-y); .-each(@type) {
+        @type {
+          y: @type;
+        }
+      }
+    }
+    
+    @list-x: 'less', 'cirious', 'somebody', 'somebody-else';
+    &{
+      .for(@list-x); .-each(@type) {
+        @type {
+          x: @type;
+        }
+      }
+    }
