@@ -78,7 +78,7 @@ output:
       x: 12;
     }
 
-### Multiple loops in a rule:
+### Multiple loops in same scope:
 
     #multiple-loops {
         & {.for(1, 3); .-each(@i) {x: @i}}
@@ -96,7 +96,7 @@ output (Less 1.6.2 and higher):
       y: 6;
     }
 
-### Multiple loops in a rule (Alt.):
+### Multiple loops in same scope (Alt.):
 
     #multiple-loops-alt {
         .-() {.for(1, 3); .-each(@i) {x: @i}}
