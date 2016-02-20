@@ -6,7 +6,7 @@
 So indeed, every time I write some `.col-md-6` in my HTML I recall how this selector was generated and this actually drives me crazy :)
 
 Here's that "horrible" [`.make-grid-columns`](https://github.com/twbs/bootstrap/blob/v3.2.0/less/mixins/grid-framework.less#L6-L27) code (same goes for [`.float-grid-columns`](https://github.com/twbs/bootstrap/blob/v3.2.0/less/mixins/grid-framework.less#L29-L44)):
-```
+```less
 .make-grid-columns() {
   // Common styles for all sizes of grid columns, widths 1-12
   .col(@index) when (@index = 1) { // initial
@@ -48,7 +48,7 @@ There are some feature requests/ideas that will improve the situation eventually
 Currently, the only "Less-native"/"non-hackish" way to generate a ruleset with a list of arbitrary selectors is the [`extend`](http://lesscss.org/features/#extend-feature) feature. So the first (and the simplest) solution is to move the styles of the generated selector list into a ruleset with some predefined name and then just `extend` it by generated classes:
 
 ### Method #1 ("Dummy Classes").
-```
+```less
 .grid-column-any {
     // Common styles for all sizes of grid columns
     position: relative;
@@ -78,7 +78,7 @@ That's it (actual code for complete `grid-framework.less` will be a bit differen
 If Less has the [":extend mixins" feature](https://github.com/less/less.js/issues/1177) we could simply turn the template into a mixin and it won't appear in the CSS, but Less has not... so it's time for some trick.
 ### Method #2 ("Extending `.col-*-1` classes").
 And here we are, set the template styles in the first column classes and than `extend` this first column(s) by subsequent column classes:
-```
+```less
 .col-xs-1,
 .col-sm-1,
 .col-md-1,
@@ -106,7 +106,7 @@ And here we are, set the template styles in the first column classes and than `e
 (Yet again the actual code of `grid-framework.less` would be slightly different: see [the branch](https://github.com/seven-phases-max/bootstrap/blob/refactoring-grid-framework-m2/less/mixins/grid-framework.less).)
 
 Unfortunately this approach has one quite critical problem. While such mixin works just fine on its own, in the framework it may interfere with and be broken by another grid related code. Basically if you for example add another `.col-xs-1` definition/styles anywhere at the global scope of your Less code, e.g.:
-```
+```less
 .col-xs-1 {
     color: red;
 }
@@ -121,7 +121,7 @@ So this method may still be considered as a working temporary solution, but only
 ### Method #3 ("Emulating #1177").
 It is possible to emulate the [":extend mixins" feature](https://github.com/less/less.js/issues/1177) by `extend`ing a ruleset defined in a file imported with [`reference`](http://lesscss.org/features/#import-options-reference) option. I.e. we can move our dummy templates to a separate file, `@import (reference) "it";` and voilà, no dummy selectors in the generated CSS:
 
-```
+```less
 // ............................................................
 // grid-aux.less:
 
