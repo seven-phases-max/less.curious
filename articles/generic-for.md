@@ -12,106 +12,106 @@ Less code:
 </code></pre>
 
 CSS output:
-
-    basic-usage {
-      i: 1;
-      i: 2;
-      i: 3;
-      i: 4;
-      i: 5;
-      i: 6;
-    }
-
+```css
+basic-usage {
+  i: 1;
+  i: 2;
+  i: 3;
+  i: 4;
+  i: 5;
+  i: 6;
+}
+```
 ### More real-world example
 Less code:
+```less
+@grid-columns: 5;
 
-    @grid-columns: 5;
-
-    .column {
-        .for(@grid-columns); .-each(@i) {
-            &-@{i} {width: (@i / @grid-columns * 100%)}
-        }
+.column {
+    .for(@grid-columns); .-each(@i) {
+        &-@{i} {width: (@i / @grid-columns * 100%)}
     }
-
+}
+```
 CSS output:
-
-    .column-1 {
-      width: 20%;
-    }
-    .column-2 {
-      width: 40%;
-    }
-    .column-3 {
-      width: 60%;
-    }
-    .column-4 {
-      width: 80%;
-    }
-    .column-5 {
-      width: 100%;
-    }
-
+```css
+.column-1 {
+  width: 20%;
+}
+.column-2 {
+  width: 40%;
+}
+.column-3 {
+  width: 60%;
+}
+.column-4 {
+  width: 80%;
+}
+.column-5 {
+  width: 100%;
+}
+```
 More examples
 ---------------------
 
 ### Nested loops:
-
-    #nested-loops {
-        .for(3, 1); .-each(@i) {
-            .for(0, 2); .-each(@j) {
-                x: (10 * @i + @j);
-            }
+```less
+#nested-loops {
+    .for(3, 1); .-each(@i) {
+        .for(0, 2); .-each(@j) {
+            x: (10 * @i + @j);
         }
     }
-
+}
+```
 output:
-
-    #nested-loops {
-      x: 30;
-      x: 31;
-      x: 32;
-      x: 20;
-      x: 21;
-      x: 22;
-      x: 10;
-      x: 11;
-      x: 12;
-    }
-
+```css
+#nested-loops {
+  x: 30;
+  x: 31;
+  x: 32;
+  x: 20;
+  x: 21;
+  x: 22;
+  x: 10;
+  x: 11;
+  x: 12;
+}
+```
 ### Multiple loops in same scope:
-
-    #multiple-loops {
-        & {.for(1, 3); .-each(@i) {x: @i}}
-        & {.for(4, 6); .-each(@i) {y: @i}}
-    }
-
+```less
+#multiple-loops {
+    & {.for(1, 3); .-each(@i) {x: @i}}
+    & {.for(4, 6); .-each(@i) {y: @i}}
+}
+```
 output (Less 1.6.2 and higher):
-
-    #multiple-loops {
-      x: 1;
-      x: 2;
-      x: 3;
-      y: 4;
-      y: 5;
-      y: 6;
-    }
-
+```css
+#multiple-loops {
+  x: 1;
+  x: 2;
+  x: 3;
+  y: 4;
+  y: 5;
+  y: 6;
+}
+```
 ### Multiple loops in same scope (Alt.):
-
-    #multiple-loops-alt {
-        .-() {.for(1, 3); .-each(@i) {x: @i}}
-        .-() {.for(4, 6); .-each(@i) {y: @i}}
-        .-();
-    }
-
+```less
+#multiple-loops-alt {
+    .-() {.for(1, 3); .-each(@i) {x: @i}}
+    .-() {.for(4, 6); .-each(@i) {y: @i}}
+    .-();
+}
+```
 output:
-
-    #multiple-loops-alt {
-      x: 1;
-      x: 2;
-      x: 3;
-      y: 4;
-      y: 5;
-      y: 6;
-    }
-
+```css
+#multiple-loops-alt {
+  x: 1;
+  x: 2;
+  x: 3;
+  y: 4;
+  y: 5;
+  y: 6;
+}
+```
