@@ -93,25 +93,26 @@ CSS output:
 More examples
 ---------------------
 ### Nested loops:
-
-    #nested-loops {
-        .for(a b c); .-each(@a) {
-            .for(1 2 3); .-each(@b) {
-                x: @a @b;
-            }
+```less
+#nested-loops {
+    .for(a b c); .-each(@a) {
+        .for(1 2 3); .-each(@b) {
+            x: @a @b;
         }
     }
-
+}
+```
 output:
-
-    #nested-loops {
-      x: a 1;
-      x: a 2;
-      x: a 3;
-      x: b 1;
-      x: b 2;
-      x: b 3;
-      x: c 1;
-      x: c 2;
-      x: c 3;
-    }
+```css
+#nested-loops {
+  x: a 1;
+  x: a 2;
+  x: a 3;
+  x: b 1;
+  x: b 2;
+  x: b 3;
+  x: c 1;
+  x: c 2;
+  x: c 3;
+}
+```
