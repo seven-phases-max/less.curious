@@ -176,3 +176,8 @@ My vote definitely goes for this method. After all who does care of four or five
 
 - *Pros*: No dummy classes in the output. More safe than **#2**.
 - *Cons*: Too tricky and too bloating code.
+
+---
+
+### Also see:
+* [this ticket](https://github.com/less/less.js/issues/2702#issuecomment-142942530) for "What's wrong with Bootstrap-like media/grid code in general".
