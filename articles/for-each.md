@@ -1,4 +1,4 @@
-Deprecated. Use [`less-plugin-lists`](https://github.com/seven-phases-max/less-plugin-lists#features) instead.
+### Deprecated. Use [`less-plugin-lists`](https://github.com/seven-phases-max/less-plugin-lists#features) instead.
 
 ---
 
