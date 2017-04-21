@@ -1,10 +1,13 @@
+
+// Deprecated. Use https://github.com/seven-phases-max/less-plugin-lists instead
+
+// ............................................................
 // this is list/array only for-each version
 // useful in situation where the list may have the only numeric item
 // (in that case the original implementation will result in:
 // .for(4px) -> loop through values from 1px to 4px)
 
 // ............................................................
-// .for-each
 
 .for(@array)   when (default()) {.for-impl_(length(@array))}
 .for-impl_(@i) when (@i > 1)    {.for-impl_((@i - 1))}
