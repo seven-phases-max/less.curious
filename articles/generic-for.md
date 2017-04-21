@@ -1,3 +1,7 @@
+### Deprecated. Use [`less-plugin-lists`](https://github.com/seven-phases-max/less-plugin-lists#features) instead.
+
+---
+
 ## Generic `for` Structure in [Less](http://lesscss.org/) Using Mixins
 
 ### Basic usage
