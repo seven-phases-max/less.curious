@@ -1,5 +1,5 @@
 
-## On refactoring Boostrap grid implementation.
+## On refactoring Boostrap 3 grid implementation.
 
 ### See [Inspiring discussion](https://github.com/less/less.js/issues/1785#issuecomment-31876655) first.
 
