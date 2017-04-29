@@ -1,4 +1,8 @@
 
+**Note**: This article was only about cleaning up the particular Bootstrap 3 code. But in general, this is *not* how I recommend to make implement these things if you're writing your grid stuff from scratch (see https://github.com/less/less.js/issues/2702#issuecomment-144810471 for a few examples).
+
+---
+
 ## On refactoring Boostrap 3 grid implementation.
 
 ### See [Inspiring discussion](https://github.com/less/less.js/issues/1785#issuecomment-31876655) first.
